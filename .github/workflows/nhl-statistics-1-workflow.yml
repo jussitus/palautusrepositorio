@@ -1,11 +1,13 @@
-name: CI
+name: teht1
 
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
-
+defaults:
+  run:
+    working-directory: viikko1/nhl-statistics-1
 jobs:
   build:
     runs-on: ubuntu-latest
