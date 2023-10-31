@@ -29,6 +29,7 @@ jobs:
       - name: Coverage report to Codecov
         uses: nick-fields/retry@v2
         with:
+          working-directory: viikko1/nhl-statistics-1
           timeout_seconds: 15
           max_attempts: 3
           command: bash <(curl -s https://codecov.io/bash) -Z
