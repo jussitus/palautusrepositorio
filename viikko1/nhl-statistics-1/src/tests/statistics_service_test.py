@@ -47,8 +47,7 @@ class TestStatisticsService(unittest.TestCase):
             Player("Gretzky", "EDM", 35, 89),
             Player("Lemieux", "PIT", 45, 54),
         ]
-        # top on 0-indeksoitu
-        self.assertEqual(list(map(str,self.stats.top(1))), list(map(str,top2)))
+        self.assertEqual(list(map(str,self.stats.top(2))), list(map(str,top2)))
 
 
         
