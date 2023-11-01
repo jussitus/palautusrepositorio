@@ -72,7 +72,7 @@ class TestStatisticsService(unittest.TestCase):
     def test_top_sorts_by_goals(self):
         top2 = [
             Player("Lemieux", "PIT", 45, 54),
-            #Player("Yzerman", "DET", 42, 56),
+            Player("Yzerman", "DET", 42, 56),
         ]
         self.assertEqual(list(map(str,self.stats.top(2, SortBy.GOALS))), list(map(str,top2)))
     
