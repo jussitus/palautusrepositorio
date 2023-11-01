@@ -7,7 +7,7 @@ on:
     branches: [main]
 defaults:
   run:
-    working-directory: viikko1/nhl-statistics-1
+    working-directory: ./viikko1/nhl-statistics-1
 jobs:
   build:
     runs-on: ubuntu-latest
