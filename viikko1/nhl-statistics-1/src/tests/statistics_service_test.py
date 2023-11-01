@@ -1,5 +1,5 @@
 import unittest
-from statistics_service import StatisticsService, sort_by_points
+from statistics_service import SortBy, StatisticsService, sort_by_points
 from player import Player
 
 class PlayerReaderStub:
@@ -48,5 +48,27 @@ class TestStatisticsService(unittest.TestCase):
         ]
         self.assertEqual(list(map(str,self.stats.top(2))), list(map(str,top2)))
 
+    def test_top_sorts_by_points(self):
+        top2 = [
+            Player("Gretzky", "EDM", 35, 89),
+            Player("Lemieux", "PIT", 45, 54),
+        ]
+        self.assertEqual(list(map(str,self.stats.top(2, SortBy.POINTS))), list(map(str,top2)))
+    
+    def test_top_sorts_by_goals(self):
+        top2 = [
+            Player("Lemieux", "PIT", 45, 54),
+            Player("Yzerman", "DET", 42, 56),
+        ]
+        self.assertEqual(list(map(str,self.stats.top(2, SortBy.GOALS))), list(map(str,top2)))
+    
+    def test_top_sorts_by_assists(self):
+        top2 = [
+            Player("Gretzky", "EDM", 35, 89),
+            Player("Yzerman", "DET", 42, 56),
+        ]
+        self.assertEqual(list(map(str,self.stats.top(2, SortBy.ASSISTS))), list(map(str,top2)))
 
-        
+    def test_top_raises_exception_if_given_incorrect_order(self):
+        with self.assertRaises(TypeError):
+            self.stats.top(2, "not even an int")

@@ -1,9 +1,25 @@
 from player_reader import PlayerReader
+from enum import Enum
 
-
+# this is pretty superfluous now with sort_by handling sorting
 def sort_by_points(player):
     return player.points
 
+class SortBy(Enum):
+    POINTS = 1
+    GOALS = 2
+    ASSISTS = 3
+
+def sort_by(order: SortBy):
+    match order:
+        case SortBy.POINTS:
+            return lambda player: player.points
+        case SortBy.GOALS:
+            return lambda player: player.goals
+        case SortBy.ASSISTS:
+            return lambda player: player.assists
+        case _:
+            raise TypeError("Invalid order for sort_by")
 
 class StatisticsService:
     def __init__(self, reader: PlayerReader):
@@ -26,11 +42,12 @@ class StatisticsService:
 
         return list(players_of_team)
 
-    def top(self, how_many):
+    def top(self, how_many, sorted_by=SortBy.POINTS):
+        f = sort_by(sorted_by)
         sorted_players = sorted(
             self._players,
             reverse=True,
-            key=sort_by_points
+            key=f
         )
 
         result = []
