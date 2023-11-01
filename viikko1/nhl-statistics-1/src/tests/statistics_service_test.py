@@ -20,10 +20,9 @@ class TestStatisticsService(unittest.TestCase):
         )
 
     def test_sort_by_points_works_for_sorting_a_list(self):
-        players1 = PlayerReaderStub()
-        players1 = sorted(players1.get_players(), key=sort_by_points)
-        players2 = PlayerReaderStub()
-        players2 = sorted(players2.get_players(), key=lambda player: player.goals + player.assists)
+        reader = PlayerReaderStub()
+        players1 = sorted(reader.get_players(), key=sort_by_points)
+        players2 = sorted(reader.get_players(), key=lambda player: player.goals + player.assists)
         
         self.assertEqual(list(map(str, players1)), list(map(str, players2)))
 
