@@ -1,5 +1,5 @@
 import unittest
-from statistics_service import SortBy, StatisticsService, sort_by_points
+from statistics_service import SortBy, StatisticsService, sort_by
 from player import Player
 
 class PlayerReaderStub:
@@ -19,10 +19,24 @@ class TestStatisticsService(unittest.TestCase):
             PlayerReaderStub()
         )
 
-    def test_sort_by_points_works_for_sorting_a_list(self):
+    def test_sort_by_works_for_sorting_by_points(self):
         reader = PlayerReaderStub()
-        players1 = sorted(reader.get_players(), key=sort_by_points)
+        players1 = sorted(reader.get_players(), key=sort_by(SortBy.POINTS))
         players2 = sorted(reader.get_players(), key=lambda player: player.goals + player.assists)
+        
+        self.assertEqual(list(map(str, players1)), list(map(str, players2)))
+
+    def test_sort_by_works_for_sorting_by_goals(self):
+        reader = PlayerReaderStub()
+        players1 = sorted(reader.get_players(), key=sort_by(SortBy.GOALS))
+        players2 = sorted(reader.get_players(), key=lambda player: player.goals)
+        
+        self.assertEqual(list(map(str, players1)), list(map(str, players2)))
+    
+    def test_sort_by_works_for_sorting_by_assists(self):
+        reader = PlayerReaderStub()
+        players1 = sorted(reader.get_players(), key=sort_by(SortBy.ASSISTS))
+        players2 = sorted(reader.get_players(), key=lambda player: player.assists)
         
         self.assertEqual(list(map(str, players1)), list(map(str, players2)))
 

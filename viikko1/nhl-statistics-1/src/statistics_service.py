@@ -1,10 +1,6 @@
 from player_reader import PlayerReader
 from enum import Enum
 
-# this is pretty superfluous now with sort_by handling sorting
-def sort_by_points(player):
-    return player.points
-
 class SortBy(Enum):
     POINTS = 1
     GOALS = 2
