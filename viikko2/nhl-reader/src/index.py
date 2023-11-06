@@ -1,6 +1,7 @@
 import requests
 from player import Player
 
+
 def main():
     url = "https://studies.cs.helsinki.fi/nhlstats/2022-23/players"
     response = requests.get(url).json()
@@ -16,7 +17,10 @@ def main():
 
     print("Players from FIN:\n")
 
-    for player in filter(lambda player: player.nationality == "FIN", players):
+    for player in sorted(
+        filter(lambda player: player.nationality == "FIN", players),
+        key=lambda player: player.points, reverse=True,
+    ):
         print(player)
 
 
