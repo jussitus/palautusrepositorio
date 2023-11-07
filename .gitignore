@@ -4,3 +4,4 @@ __pycache__
 htmlcov
 *.tmp
 viikko2/nhl-reader/nhl-reader.code-workspace
+viikko3/hello-robot/hello-robot.code-workspace
