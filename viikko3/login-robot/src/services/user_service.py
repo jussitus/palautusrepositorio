@@ -1,3 +1,4 @@
+import re
 from entities.user import User
 
 
@@ -27,9 +28,7 @@ class UserService:
     def create_user(self, username, password):
         self.validate(username, password)
 
-        user = self._user_repository.create(
-            User(username, password)
-        )
+        user = self._user_repository.create(User(username, password))
 
         return user
 
@@ -37,4 +36,11 @@ class UserService:
         if not username or not password:
             raise UserInputError("Username and password are required")
 
-        # toteuta loput tarkastukset tänne ja nosta virhe virhetilanteissa
+        if not re.match("^[a-z]{3,}$", username):
+            raise UserInputError("Invalid username")
+        
+        if not re.match("^(?=.*(\W|\d)).{8,}$", password):
+            raise UserInputError("Invalid password")
+        
+        if self._user_repository.find_by_username(username):
+            raise UserInputError("Username already taken")
