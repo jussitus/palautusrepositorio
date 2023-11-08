@@ -5,3 +5,6 @@ htmlcov
 *.tmp
 *.code-workspace
 *.pylintrc
+log.html
+output.xml
+report.html
