@@ -1,8 +1,10 @@
 *** Settings ***
-Resource  resource.robot
-Suite Setup  Open And Configure Browser
-Suite Teardown  Close Browser
-Test Setup  Go To Main Page
+Resource            resource.robot
+
+Suite Setup         Open And Configure Browser
+Suite Teardown      Close Browser
+Test Setup          Go To Main Page
+
 
 *** Test Cases ***
 Click Login Link

@@ -1,8 +1,10 @@
 *** Settings ***
-Resource  resource.robot
-Suite Setup  Open And Configure Browser
-Suite Teardown  Close Browser
-Test Setup  Create User And Go To Login Page
+Resource            resource.robot
+
+Suite Setup         Open And Configure Browser
+Suite Teardown      Close Browser
+Test Setup          Create User And Go To Login Page
+
 
 *** Test Cases ***
 Login With Correct Credentials
@@ -20,10 +22,11 @@ Login With Incorrect Password
 Login With Nonexistent Username
     Reset Application
     Go To Login Page
-    Set Username    kalle
-    Set Password    kalle123
+    Set Username  kalle
+    Set Password  kalle123
     Submit Credentials
-    Login Should Fail With Message    Invalid username or password
+    Login Should Fail With Message  Invalid username or password
+
 
 *** Keywords ***
 Login Should Succeed

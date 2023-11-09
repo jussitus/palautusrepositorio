@@ -7,6 +7,7 @@ authors = ["Your Name <you@example.com>"]
 [tool.poetry.dependencies]
 python = "^3.10"
 flask = "^3.0.0"
+robotframework-tidy = "^4.6.0"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -17,3 +18,7 @@ requests = "^2.31.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.robotidy]
+indent = 4
+spacecount = 2
