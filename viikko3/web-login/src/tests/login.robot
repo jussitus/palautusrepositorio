@@ -1,5 +1,6 @@
 *** Settings ***
 Resource            resource.robot
+Resource            login_resource.robot
 
 Suite Setup         Open And Configure Browser
 Suite Teardown      Close Browser
@@ -8,47 +9,28 @@ Test Setup          Create User And Go To Login Page
 
 *** Test Cases ***
 Login With Correct Credentials
-    Set Username  kalle
-    Set Password  kalle123
-    Submit Credentials
+    Set Username  ${GOOD_USERNAME}
+    Set Password  ${GOOD_PASSWORD}
+    Submit Credentials  Login
     Login Should Succeed
 
 Login With Incorrect Password
-    Set Username  kalle
-    Set Password  kalle456
-    Submit Credentials
+    Set Username  ${GOOD_USERNAME}
+    Set Password  ${SOME_PASSWORD}
+    Submit Credentials  Login
     Login Should Fail With Message  Invalid username or password
 
 Login With Nonexistent Username
     Reset Application
     Go To Login Page
-    Set Username  kalle
-    Set Password  kalle123
-    Submit Credentials
+    Set Username  ${GOOD_USERNAME}
+    Set Password  ${GOOD_PASSWORD}
+    Submit Credentials  Login
     Login Should Fail With Message  Invalid username or password
 
 
 *** Keywords ***
 Create User And Go To Login Page
-    Create User  kalle  kalle123
+    Create User  ${GOOD_USERNAME}  ${GOOD_PASSWORD}
     Go To Login Page
     Login Page Should Be Open
-
-Login Should Fail With Message
-    [Arguments]  ${message}
-    Login Page Should Be Open
-    Page Should Contain  ${message}
-
-Login Should Succeed
-    Main Page Should Be Open
-
-Set Password
-    [Arguments]  ${password}
-    Input Password  password  ${password}
-
-Set Username
-    [Arguments]  ${username}
-    Input Text  username  ${username}
-
-Submit Credentials
-    Click Button  Login
