@@ -22,3 +22,4 @@ build-backend = "poetry.core.masonry.api"
 [tool.robotidy]
 indent = 4
 spacecount = 2
+configure = ["SmartSortKeywords:enabled=true"]
