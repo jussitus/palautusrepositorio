@@ -126,3 +126,55 @@ class TestKauppa(unittest.TestCase):
         self.pankki_mock.tilisiirto.assert_called_with(
             "matti", 100, "54321", "33333-44455", 5
         )
+
+    def test_aloita_asiointi_nollaa_edellisen_ostoksen_hinnan(self):
+        kauppa = Kauppa(
+            self.varasto_mock, self.pankki_mock, self.viitegeneraattori_mock
+        )
+        kauppa.aloita_asiointi()
+        kauppa.lisaa_koriin(1)
+        kauppa.tilimaksu("matti", "54321")
+
+        kauppa.aloita_asiointi()
+        kauppa.lisaa_koriin(1)
+        kauppa.tilimaksu("pekka", "12345")
+        self.pankki_mock.tilisiirto.assert_called_with(
+            "pekka", 100, "12345", "33333-44455", 5
+        )
+
+    def test_kauppa_pyytaa_uuden_viitenumeron_jokaiselle_maksutapahtumalle(self):
+        kauppa = Kauppa(
+            self.varasto_mock, self.pankki_mock, self.viitegeneraattori_mock
+        )
+        kauppa.aloita_asiointi()
+        kauppa.lisaa_koriin(1)
+        kauppa.tilimaksu("matti", "54321")
+
+        kauppa.aloita_asiointi()
+        kauppa.lisaa_koriin(1)
+        kauppa.tilimaksu("pekka", "12345")
+
+        self.assertEqual(self.viitegeneraattori_mock.uusi.call_count, 2)
+
+    def test_poisto_korista_kutsuu_varaston_palautusmetodia(self):
+        kauppa = Kauppa(
+            self.varasto_mock, self.pankki_mock, self.viitegeneraattori_mock
+        )
+        kauppa.aloita_asiointi()
+        kauppa.lisaa_koriin(1)
+        kauppa.lisaa_koriin(2)
+        kauppa.poista_korista(2)
+        self.varasto_mock.palauta_varastoon.assert_called_with(Tuote(2, "leipä", 6))
+
+    def test_korista_poistetun_tuotteen_hintaa_ei_veloiteta_maksettaessa(self):
+        kauppa = Kauppa(
+            self.varasto_mock, self.pankki_mock, self.viitegeneraattori_mock
+        )
+        kauppa.aloita_asiointi()
+        kauppa.lisaa_koriin(1)
+        kauppa.lisaa_koriin(2)
+        kauppa.poista_korista(2)
+        kauppa.tilimaksu("matti", "54321")
+        self.pankki_mock.tilisiirto.assert_called_with(
+            "matti", 100, "54321", "33333-44455", 5
+        )
