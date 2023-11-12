@@ -1,0 +1,8 @@
+### Tehtävä 5
+Retrospektiivi on Scrum-prosessissa sprintin jälkeen pidettävä palaveri, jossa kehitystiimi peilaa mitkä asiat sprintissä menivät hyvin, mikä ei toiminut ja miten tiimin työskentelytapoja voisi parantaa seuraavaa sprinttiä varten. Scrum ei määrää retrospektiiville mitään tiettyä kaavaa, mutta ihmiset ovat ideoineet erilaisia tapoja. 
+
+*Start, Stop, Continue, More of, Less of Wheel* ja *Glad, Sad, Mad* ovat kaksi tapaa pitää retrospektiivi. 
+
+Ensimmäinen kestää noin 10 minuuttia pienellä kehitystiimillä ja siinä piirretään ympyrä, joka jaetaan viiteen sektoriin. Sektoreihin kirjoitetaan mitä pitäisi alkaa (*start*) tehdä, mitä lakata (*stop*) tekemästä, minkä tekemistä jatkaa (*continue*) samaan malliin, mitä pitäisi tehdä enemmän (*more of*) ja mitä vähemmän (*less of*).
+
+Toinen alkaa sillä, että korteille kirjoitetaan havaintoja sprintistä noin 10-15 minuutin ajan. Ideoinnin jälkeen jokainen selittää korttiensa sisällön tiimille. Kehittäjä jakaa kortit taululla olevaan kolmeen kategoriaan, riippuen siitä onko hän asiaan tyytyväinen (*glad*), siitä harmissaan (*sad*) vaiko vihainen (*mad*). Mad-kategoriaan kuuluvat etenkin tiimin ulkopuoliset asiat, jotka kuitenkin haittasivat sprinttiä jollain tapaa. Tämän jälkeen joku niputtaa yhteen samaa asiaa koskevat havainnot. Lopuksi asioiden käsittelyjärjestyksestä äänestetään ja niistä keskutellaan, kunnes kaikki on käsitelty tai palaverin tunnin maksimikesto tulee täyteen.
