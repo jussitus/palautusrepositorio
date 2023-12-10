@@ -1,4 +1,3 @@
-
 # Luokka pitää kirjaa ensimmäisen ja toisen pelaajan pisteistä sekä tasapelien määrästä.
 class Tuomari:
     def __init__(self):
